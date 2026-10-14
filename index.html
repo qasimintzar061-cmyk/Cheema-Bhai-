@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRITICAL SYSTEM BREACH</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #000000;
+            color: #00ff00;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 15px;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+        .main-title {
+            color: #ff0000;
+            font-size: 24px;
+            font-weight: 900;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px #ff0000;
+            border-bottom: 2px solid #ff0000;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            animation: blink 1s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+        .terminal {
+            flex-grow: 1;
+            overflow-y: auto;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            padding-right: 5px;
+        }
+        .line-red { color: #ff3333; }
+        .line-yellow { color: #ffcc00; }
+        .line-green { color: #00ff66; }
+        .line-white { color: #ffffff; }
+
+        .bottom-section {
+            margin-top: 10px;
+        }
+        .progress-container {
+            width: 100%;
+            background: #111;
+            border: 1px solid #ff0000;
+            height: 25px;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(90deg, #ff0000, #990000);
+            transition: width 0.5s linear;
+        }
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px #000;
+        }
+        .final-lock {
+            display: none;
+            text-align: center;
+            color: #ff0000;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ff0000;
+            background: rgba(255, 0, 0, 0.1);
+            text-shadow: 0 0 10px #ff0000;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <div class="main-title">YOU ARE COMPLETELY HACK BY SAIM</div>
+        <div class="terminal" id="terminal"></div>
+    </div>
+
+    <div class="bottom-section">
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+            <div class="progress-text" id="progressText">SYSTEM COMPROMISE IN PROGRESS: 0%</div>
+        </div>
+        <div class="final-lock" id="finalLock">
+            ⚠️ SYSTEM PERMANENTLY LOCKED & CONTROLLED BY SAIM ⚠️
+        </div>
+    </div>
+
+<script>
+    const terminal = document.getElementById('terminal');
+    const progressBar = document.getElementById('progressBar');
+    const progressText = document.getElementById('progressText');
+    const finalLock = document.getElementById('finalLock');
+
+    // Total duration: 3 minutes (180,000 ms)
+    const TOTAL_DURATION_MS = 180000;
+
+    const hackSteps = [
+        { text: "[INIT] Establishing encrypted tunnel to SAIM Command Server...", type: "line-red" },
+        { text: "[BYPASS] Overriding device Security policies & Knox/Gatekeeper...", type: "line-yellow" },
+        { text: "[SUCCESS] Root Access Granted! Target device bound to SAIM Botnet.", type: "line-red" },
+        { text: "[DEVICE INFO] Extracting Device Model, IMEI, Hardware ID & IP Address...", type: "line-white" },
+        { text: "[GOOGLE HACK] Accessing Google Account Tokens & Stored Cookies...", type: "line-yellow" },
+        { text: "[GOOGLE HACK] Bypassing Google 2-Step Verification...", type: "line-red" },
+        { text: "[GOOGLE HACK] Google Chrome Passwords & Auto-fill Data Extracted!", type: "line-green" },
+        { text: "[GALLERY ACCESS] Mounting internal storage (/sdcard/DCIM)...", type: "line-yellow" },
+        { text: "[GALLERY ACCESS] Scanning Camera, WhatsApp Images & Screenshots...", type: "line-red" },
+        { text: "[GALLERY ACCESS] Found 1,420 Photos and 88 Private Videos.", type: "line-white" },
+        { text: "[GALLERY ACCESS] Transferring Gallery Media to SAIM Encrypted Cloud...", type: "line-red" },
+        { text: "[WHATSAPP] Accessing /WhatsApp/Databases/msgstore.db.crypt14...", type: "line-yellow" },
+        { text: "[WHATSAPP] Decrypting database keys... Success!", type: "line-green" },
+        { text: "[WHATSAPP] Dumping All Personal Chats, Audio Notes, and Media...", type: "line-red" },
+        { text: "[CAMERA] Initializing silent background camera capture...", type: "line-red" },
+        { text: "[MICROPHONE] Opening background audio streaming link...", type: "line-yellow" },
+        { text: "[SOCIALS] Extracting Facebook, Instagram & TikTok tokens...", type: "line-white" },
+        { text: "[BANKING] Scanning SMS inbox for Banking OTPs & Account Alerts...", type: "line-red" },
+        { text: "[LOCATION] Tracking precise live GPS location via satellite...", type: "line-yellow" },
+        { text: "[UPLOADING] Exfiltrating data package (8.9 GB / 10.0 GB)...", type: "line-white" },
+        { text: "[CLEANUP] Wiping local event logs and traces...", type: "line-green" },
+        { text: "[SYSTEM LOCK] Locking device bootloader & disabling reset options...", type: "line-red" },
+        { text: "[FINAL] Target device is now fully owned and controlled by SAIM.", type: "line-red" }
+    ];
+
+    const stepInterval = TOTAL_DURATION_MS / hackSteps.length;
+    let currentStep = 0;
+
+    function addLine(step) {
+        const div = document.createElement('div');
+        div.className = step.type;
+        div.textContent = "> " + step.text;
+        terminal.appendChild(div);
+        terminal.scrollTop = terminal.scrollHeight;
+    }
+
+    const timer = setInterval(() => {
+        if (currentStep < hackSteps.length) {
+            addLine(hackSteps[currentStep]);
+            currentStep++;
+            
+            let percent = Math.floor((currentStep / hackSteps.length) * 100);
+            progressBar.style.width = percent + '%';
+            progressText.textContent = `SYSTEM COMPROMISE IN PROGRESS: ${percent}%`;
+        } else {
+            clearInterval(timer);
+            progressBar.style.width = '100%';
+            progressText.textContent = 'SYSTEM OVERRIDDEN 100%';
+            setTimeout(() => {
+                finalLock.style.display = 'block';
+            }, 500);
+        }
+    }, stepInterval);
+
+    addLine(hackSteps[0]);
+    currentStep = 1;
+</script>
+
+</body>
+</html>
